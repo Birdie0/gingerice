@@ -80,6 +80,9 @@ module Gingerice
     end
 
     def process_response
+      @result = ''
+      @corrections = []
+
       begin
         json_data = JSON.parse(raw_response)
 
