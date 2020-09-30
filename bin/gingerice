@@ -7,7 +7,7 @@ require 'gingerice/command'
 begin
   command = Gingerice::Command.new(ARGV)
   command.execute
-rescue Exception => e
+rescue StandardError => e
   puts e.message
 end
 

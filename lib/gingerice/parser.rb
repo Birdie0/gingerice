@@ -65,7 +65,7 @@ module Gingerice
         OpenURI.open_uri(uri) do |stream|
           @raw_response = stream.read
         end
-      rescue Exception => _
+      rescue StandardError
         raise ConnectionError, "ERROR: Couldn't connect to API endpoint (#{api_endpoint})"
       end
     end
@@ -74,7 +74,7 @@ module Gingerice
       begin
         json_data = JSON.parse(raw_response)
         json_data.fetch('LightGingerTheTextResult', []).length
-      rescue Exception => _
+      rescue StandardError
         raise ParseError, "ERROR: We receive invalid JSON format!"
       end
     end
@@ -103,7 +103,7 @@ module Gingerice
           'result'      => result,
           'corrections' => @corrections
         }
-      rescue Exception => _
+      rescue StandardError
         raise ParseError, "ERROR: We receive invalid JSON format!"
       end
     end
