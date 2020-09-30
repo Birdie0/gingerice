@@ -62,7 +62,7 @@ module Gingerice
       uri.query_values = request_params.merge({ 'text' => text })
 
       begin
-        open(uri) do |stream|
+        OpenURI.open_uri(uri) do |stream|
           @raw_response = stream.read
         end
       rescue Exception => _
